@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { postRegister } from "../../redux/asyncMethods/AuthMethods";
+import toast, { Toaster, ToastBar } from "react-hot-toast";
+
 const Register = () => {
   const [state, setState] = useState({
     name: "",
     email: "",
     password: "",
   });
+  const { loading, registerErrors, user } = useSelector(
+    (state) => state.AuthReducer
+  );
   const handleInputs = (event) => {
     setState({
       ...state,
@@ -19,28 +24,34 @@ const Register = () => {
   const dispatch = useDispatch();
   const userRegister = async (event) => {
     event.preventDefault();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    dispatch({ type: "SET_LOADER" });
-    try {
-      const response = await axios.post("/register", state, config); // posting register data to server
-      console.log(response);
-      dispatch({ type: "CLOSE_LOADER" });
-    } catch (error) {
-      dispatch({ type: "CLOSE_LOADER" });
-      dispatch({type: 'REGISTER_ERRORS', payload: error.response.data.errors}); //errors
-      console.log(error.response);
-    }
+    dispatch(postRegister(state)); // Post data short code from async methods
   };
+  // Showing Errors
+  useEffect(() => {
+    if (registerErrors.length > 0) {
+      registerErrors.map((error) => toast.error(error.msg));
+    }
+  }, [registerErrors, user]);
+
   return (
     <>
       <Helmet>
         <title>User Signup</title>
         <meta name="description" content="User Signup" />
       </Helmet>
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+            color: "red",
+            fontSize: "1.5rem",
+          },
+        }}
+      />
+      ;
       <Container>
         <Row>
           <Col md={12}>
@@ -90,7 +101,7 @@ const Register = () => {
                     <input
                       type="submit"
                       className="loginRegisterBtn"
-                      value="Signup"
+                      value={loading ? "...." : "Signup"}
                     />
                   </div>
                 </form>
