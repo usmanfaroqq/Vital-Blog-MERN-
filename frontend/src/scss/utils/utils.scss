@@ -1,0 +1,18 @@
+.group {
+    margin-bottom: 1.3rem;
+    &__control {
+      width: 100%;
+      padding: 1.5rem;
+      border: none;
+      outline: none;
+      background-color: $white !important;
+      border-bottom: 2px solid transparent;
+      border-left: 3px solid $borderLeft;
+      transition: all 0.5s;
+      &:focus {
+        border-bottom-color: $borderUnderline;
+      }
+    }
+  }
+
+  
