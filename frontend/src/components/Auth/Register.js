@@ -6,6 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { postRegister } from "../../redux/asyncMethods/AuthMethods";
 import toast, { Toaster, ToastBar } from "react-hot-toast";
 
+
+
+
+
 const Register = () => {
   const [state, setState] = useState({
     name: "",
@@ -18,7 +22,7 @@ const Register = () => {
   const handleInputs = (event) => {
     setState({
       ...state,
-      [event.target.name]: [event.target.value],
+      [event.target.name]: event.target.value,
     });
   };
   const dispatch = useDispatch();
@@ -31,7 +35,7 @@ const Register = () => {
     if (registerErrors.length > 0) {
       registerErrors.map((error) => toast.error(error.msg));
     }
-  }, [registerErrors, user]);
+  }, [registerErrors]);
 
   return (
     <>
@@ -72,7 +76,6 @@ const Register = () => {
                   <div className="group">
                     <input
                       type="text"
-                      name="name"
                       className="group__control"
                       placeholder="username"
                     />

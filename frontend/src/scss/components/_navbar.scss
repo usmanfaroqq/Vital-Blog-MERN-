@@ -4,6 +4,7 @@
   color: white;
   font-size: 13px;
   user-select: none;
+
 }
 @include responsive(tablet) {
   .for-hidden {
@@ -85,7 +86,6 @@
     font-weight: 700;
     text-transform: uppercase;
     color: black !important;
-
     @include responsive(tablet) {
       font-size: 13px;
     }
