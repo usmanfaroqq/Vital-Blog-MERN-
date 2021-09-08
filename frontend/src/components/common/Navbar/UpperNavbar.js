@@ -15,14 +15,14 @@ const UpperNavbar = () => {
   const Links = user ? (
     <>
       {" "}
-      <Link to="/create-post" className="top__banner-text gap-2">
+      <Link to="/new-post" className="top__banner-text " >
         Create Post
       </Link> //
       <Link className="top__banner-text gap-2" to="/dashboard">
         {user.name}
       </Link>{" "}
       / /
-      <span className="top__banner-text  gap-2" onClick={logout}>
+      <span className="top__banner-text  gap-2" onClick={logout} style={{cursor:"pointer"}}>
         Logout
       </span>{" "}
     </>

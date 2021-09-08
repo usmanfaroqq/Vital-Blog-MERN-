@@ -1,0 +1,25 @@
+.create__post {
+  width: 100%;
+  font-family: $headline2;
+  @extend %flex-center;
+
+  user-select: none;
+  & h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    font-family: $headline2;
+    text-transform: uppercase;
+    line-height: 10px;
+  }
+  &-card {
+    &-group {
+        
+    }
+  }
+}
+.textInputGroup {
+  margin-top: 2.5rem;
+  font-weight: 400;
+  font-size: 1.8rem;
+}

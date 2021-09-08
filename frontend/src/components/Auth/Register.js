@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postRegister } from "../../redux/asyncMethods/AuthMethods";
-import toast, { Toaster, ToastBar } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 
 

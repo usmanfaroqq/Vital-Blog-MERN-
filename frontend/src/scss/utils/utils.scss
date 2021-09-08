@@ -2,12 +2,29 @@
     margin-bottom: 1.3rem;
     &__control {
       width: 100%;
+      font-size: 12px;
       padding: 2rem;
       border: none;
       outline: none;
       background-color: $silver !important;
       border-bottom: 2px solid transparent;
       border-left: 3px solid $borderLeft;
+      transition: all 0.5s;
+      &:focus {
+        border-bottom-color: $borderUnderline;
+      }
+    }
+  }
+
+.textInputGroup {
+    &__control {
+      width: 100%;
+      padding: 2rem;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background-color: $silver !important;
+      border-bottom: 2px solid transparent;
       transition: all 0.5s;
       &:focus {
         border-bottom-color: $borderUnderline;
