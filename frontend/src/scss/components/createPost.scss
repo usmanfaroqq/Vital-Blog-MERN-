@@ -13,13 +13,21 @@
     line-height: 10px;
   }
   &-card {
-    &-group {
-        
+  }
+  &-group {
+    & h2 {
+      border-bottom: 2px solid $silver;
     }
   }
 }
-.textInputGroup {
-  margin-top: 2.5rem;
+
+.selectGroup {
   font-weight: 400;
+  margin-top: 2.5rem;
+
   font-size: 1.8rem;
+  &-text {
+    font-size: 1.5rem;
+    height: 100%;
+  }
 }
