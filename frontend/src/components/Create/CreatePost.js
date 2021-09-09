@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row, FloatingLabel, Form } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreatePost = () => {
+  const [currentImage, setCurrentImage] = useState("Select an image");
+  const imageHandle = (event) => {
+    event.preventDefault();
+    setCurrentImage(event.target.files[0].name);
+  };
+  
+  const [category, setCategory] = useState([])
+  const selectedCategory = (event) => { // select category
+      const data = {...category}
+      data[event.target.name] = event.target.value;
+      console.log(data);
+    }
+
+  // Body post content React quill
+  const [value, setValue] = useState("");
   return (
     <>
       <Helmet>
@@ -43,6 +59,8 @@ const CreatePost = () => {
                               <Form.Label>Featured Image *</Form.Label>
                               <Form.Control
                                 type="file"
+                                name="image"
+                                onChange={imageHandle}
                                 className="selectGroup-text"
                               />
                             </Form.Group>
@@ -68,25 +86,38 @@ const CreatePost = () => {
                             <Form.Select
                               aria-label="Floating label select example"
                               className="selectGroup-text"
+                              onChange={selectedCategory}
                             >
-                              <option value="1">News</option>
-                              <option value="2">Business</option>
-                              <option value="3">Magazine</option>
-                              <option value="3">Sport</option>
-                              <option value="3">Arts</option>
-                              <option value="3">Culture</option>
-                              <option value="3">Politics</option>
-                              <option value="3">Style</option>
-                              <option value="3">Travel</option>
+                              <option >News</option>
+                              <option >Business</option>
+                              <option >Magazine</option>
+                              <option >Sport</option>
+                              <option >Arts</option>
+                              <option >Culture</option>
+                              <option >Politics</option>
+                              <option >Style</option>
+                              <option >Travel</option>
                             </Form.Select>
                           </div>
                         </Col>
                       </Row>
                     </div>
+  
+                    <div className="textInputGroup">  
+                      <label htmlFor="body">
+                        Describe your content in detail...
+                      </label>
+                      <ReactQuill
+                        theme="snow"
+                        value={value}
+                        onChange={setValue}
+                        placeholder="Lorem Ispum..."
+                      />
+                    </div>
 
                     <div>
                       <Row>
-                      <Col md={6}>
+                        <Col md={6}>
                           <div className="textInputGroup">
                             <label htmlFor="description">
                               Meta description
@@ -114,11 +145,8 @@ const CreatePost = () => {
                               placeholder="Blog url"
                             />
                           </div>
-                          <div>
-                            
-                          </div>
+                          <div></div>
                         </Col>
-                        
                       </Row>
                     </div>
                   </div>
