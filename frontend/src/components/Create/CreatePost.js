@@ -8,8 +8,17 @@ import swal from "sweetalert";
 const CreatePost = (event) => {
   const [inputState, setInputState] = useState({
     title: "",
+    description: "",
+    image: "",
   });
+  const handleDescription = (event) => {
+    setInputState({
+      ...inputState,
+      [event.target.name]: event.target.value,
+    });
+  };
   const [slug, setSlug] = useState("");
+  const [updateSlugBtn, setUpdateSlugBtn] = useState(false);
   const handleInputs = (event) => {
     setInputState({
       // title slugUrl
@@ -20,14 +29,30 @@ const CreatePost = (event) => {
     setSlug(createSlug);
   };
   const chnageUrl = (event) => {
+    setUpdateSlugBtn(true);
     setSlug(event.target.value);
+  };
+  const updateUrl = (event) => {
+    event.preventDefault();
+    setSlug(slug.trim().split(" ").join("-"));
+    swal(" ", "URL Updated", "warning");
   };
 
   const [currentImage, setCurrentImage] = useState("Select an image");
+  const [imagePreview, setImagePreview] = useState("");
   const imageHandle = (event) => {
     // select an image
     event.preventDefault();
     setCurrentImage(event.target.files[0].name);
+    setInputState({
+      ...inputState,
+      [event.target.name]: event.target.files[0],
+    });
+    const imgPreview = new FileReader(); // preview image
+    imgPreview.onloadend = () => {
+      setImagePreview(imgPreview.result);
+    };
+    imgPreview.readAsDataURL(event.target.files[0]);
   };
 
   const [category, setCategory] = useState([]);
@@ -41,18 +66,22 @@ const CreatePost = (event) => {
   // Body post content React quill
   const [value, setValue] = useState("");
 
+  const createNewPost = (event) => {
+    event.preventDefault();
+    console.log(inputState);
+  };
   return (
     <>
       <Helmet>
         <title>New Post - Vital Blog</title>
         <meta name="description" content="Create New Post" />
       </Helmet>
-      ;
+      
       <div className="create__post">
         <Container>
           <Row>
             <Col md={12}>
-              <form action="">
+              <form action="" onSubmit={createNewPost}>
                 <h1>Submit your Post</h1>
                 <div className="create__post-card">
                   <div className="create__post-group">
@@ -147,11 +176,19 @@ const CreatePost = (event) => {
                             id=""
                             cols="30"
                             rows="10"
+                            defaultValue={inputState.description}
+                            onChange={handleDescription}
                             className="textInputGroup__control"
                             placeholder="meta description...."
                             maxLength="200"
                           ></textarea>
-                          <p className="description-p"></p>
+
+                          <p className="description-p">
+                            {" "}
+                            {inputState.description
+                              ? inputState.description.length
+                              : 0}{" "}
+                          </p>
                         </div>
                       </Col>
                       <Col md={6}>
@@ -172,14 +209,37 @@ const CreatePost = (event) => {
                           </Col>
                           <Col md={1}>
                             <div className="create__post-blogUrlBtn ">
-                              <button className="btn btn-primary">
-                                Update
-                              </button>
+                              {updateSlugBtn ? (
+                                <button
+                                  className="btn btn-warning"
+                                  onClick={updateUrl}
+                                >
+                                  Update
+                                </button>
+                              ) : (
+                                ""
+                              )}
                             </div>
                           </Col>
                         </Row>
+                        <div className="textInputGroup">
+                          <div className="imagePreview">
+                            {imagePreview ? (
+                              <img src={imagePreview} alt={imagePreview.name} />
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </div>
                       </Col>
                     </Row>
+                    <div className="group">
+                      <input
+                        type="submit"
+                        value="Submit Post"
+                        className="create__post-submitBlogBtn"
+                      />
+                    </div>
                   </div>
                 </div>
               </form>

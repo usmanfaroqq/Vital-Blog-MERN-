@@ -12,17 +12,36 @@ const UpperNavbar = () => {
 
     dispatch({ type: LOGOUT });
   };
+  const link1 = user
+    ? (
+      (
+        <Link className="top__banner-text" to="/">
+          {" "}
+          Home
+        </Link>
+      ))
+    : (
+        <Link className="top__banner-text" to="/dashboard">
+          {" "}
+          Write your content
+        </Link>
+      );
   const Links = user ? (
     <>
       {" "}
-      <Link to="/new-post" className="top__banner-text " >
+      <Link to="/new-post" className="top__banner-text ">
         Create Post
-      </Link> //
+      </Link>{" "}
+      //
       <Link className="top__banner-text gap-2" to="/dashboard">
         {user.name}
       </Link>{" "}
       / /
-      <span className="top__banner-text  gap-2" onClick={logout} style={{cursor:"pointer"}}>
+      <span
+        className="top__banner-text  gap-2"
+        onClick={logout}
+        style={{ cursor: "pointer" }}
+      >
         Logout
       </span>{" "}
     </>
@@ -43,21 +62,15 @@ const UpperNavbar = () => {
     <div className=" py-2 bg-dark border-bottom">
       <Container className="d-flex align-items-center justify-content-between ">
         <div className="list-unstyled d-flex align-items-center gap-4 ">
+          {link1}
           <Link className="top__banner-text" to="/">
-            {" "}
-            About
-          </Link>
-          <Link className="top__banner-text" to="/">
-            {" "}
-            Events
-          </Link>
-          <Link className="top__banner-text" to="/">
-            {" "}
-            Write for us
+            About Us
           </Link>
           <Link className="top__banner-text for-hidden" to="/">
-            {" "}
-            In the press
+            Events
+          </Link>
+          <Link className="top__banner-text for-hidden" to="/">
+            Policy
           </Link>
         </div>
         <div>{Links}</div>

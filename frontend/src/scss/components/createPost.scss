@@ -1,4 +1,5 @@
 .create__post {
+  margin-top:5rem;
   width: 100%;
   font-family: $headline2;
   @extend %flex-center;
@@ -15,7 +16,9 @@
   &-card {
   }
   &-group {
+    
     & h2 {
+      margin-top:3.2rem;
       border-bottom: 2px solid $silver;
     }
   }
@@ -27,4 +30,34 @@
       font-size: 1.2rem;
     }
   }
+  &-submitBlogBtn {
+    margin-top: 2rem;
+
+    @extend %button;
+    &:hover {
+      background: $RegisterButtonBackground
+        radial-gradient(circle, transparent 1%, $RegisterButtonBackground 1%)
+        center/15000%;
+      color: white;
+
+    }
+    &:active {
+      background-color: #292d3e;
+      background-size: 100%;
+      transition: background 0s;
+    }
+  }
+}
+.imagePreview {
+  width: 100%;
+  height: auto;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.description-p {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
 }
