@@ -34,12 +34,24 @@ const CreatePost = () => {
                     </div>
                     <div>
                       <Row>
-                        <Col md={6}>
-                          <div   className="selectGroup">
+                        <Col md={4}>
+                          <div>
+                            <Form.Group
+                              controlId="formFile"
+                              className="mb-3 selectGroup"
+                            >
+                              <Form.Label >
+                              Featured Image *
+                              </Form.Label>
+                              <Form.Control type="file"  className="selectGroup-text" />
+                            </Form.Group>
+                          </div>
+                        </Col>
+                        <Col md={4}>
+                          <div className="selectGroup">
                             <label htmlFor="title">Language</label>
 
                             <Form.Select
-                            
                               aria-label="Floating label select example"
                               className="selectGroup-text"
                             >
@@ -48,7 +60,7 @@ const CreatePost = () => {
                             </Form.Select>
                           </div>
                         </Col>
-                        <Col md={6}>
+                        <Col md={4}>
                           <div className="selectGroup">
                             <label htmlFor="title">Content type</label>
 
@@ -56,9 +68,15 @@ const CreatePost = () => {
                               aria-label="Floating label select example"
                               className="selectGroup-text"
                             >
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <option value="1">News</option>
+                              <option value="2">Business</option>
+                              <option value="3">Magazine</option>
+                              <option value="3">Sport</option>
+                              <option value="3">Arts</option>
+                              <option value="3">Culture</option>
+                              <option value="3">Politics</option>
+                              <option value="3">Style</option>
+                              <option value="3">Travel</option>
                             </Form.Select>
                           </div>
                         </Col>

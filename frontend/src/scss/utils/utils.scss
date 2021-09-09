@@ -1,4 +1,4 @@
-.group {
+.group { // used in register and login input
     margin-bottom: 1.3rem;
     &__control {
       width: 100%;
@@ -16,22 +16,42 @@
     }
   }
 
-.textInputGroup {
-  font-size: 1.8rem;
-  font-weight: 400;
-  margin-top: 2.5rem;
-
-    &__control {
-      width: 100%;
-      padding: 2rem;
+  .selectGroup { // used in cretePost select group
+    font-weight: 400;
+    margin-top: 2.5rem;
+    font-size: 1.8rem;
+    &-text {
+      font-size: 1.5rem;
+      height: 100%;
+      border-radius: 8px;
+      padding: 1rem;
       border: none;
       outline: none;
+      border-radius: 5px;
+      font-size: 15px;
+      background-color: $silver !important;
+    }
+  }
+  .textInputGroup { // used in cretePost title group
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-top: 2.5rem;
+  
+    &__control {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+  
       font-size: 15px;
       background-color: $silver !important;
       border-bottom: 2px solid transparent;
       transition: all 0.5s;
+  
       &:focus {
         border-bottom-color: $borderUnderline;
       }
     }
   }
+  
