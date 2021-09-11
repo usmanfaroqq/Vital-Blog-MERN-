@@ -4,6 +4,7 @@ const dbConnect = require("./config/database");
 const router = require('./routes/userRoutes.js');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const postRoutes = require('./routes/postRoutes')
 
 // Calling a function
 const app = express();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 }); // Home Route
 
 app.use('/', router) // Register/login Function
+app.use('/', router) // post Route
 
 
 

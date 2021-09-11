@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row, FloatingLabel, Form } from "react-bootstrap";
+import { Col, Container, Row, Form } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import swal from "sweetalert";
+import { createAction } from "../../redux/asyncMethods/PostMethods";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreatePost = (event) => {
+  const dispatch = useDispatch();
+  const { user:  {_id, name} } = useSelector((state) => state.AuthReducer);
   const [inputState, setInputState] = useState({
     title: "",
     description: "",
@@ -68,7 +72,17 @@ const CreatePost = (event) => {
 
   const createNewPost = (event) => {
     event.preventDefault();
-    console.log(inputState);
+    const {title, description, image} = inputState;
+    const postData = new FormData();
+    postData.append("title", title)
+    postData.append("body", value)
+    postData.append("image", image)
+    postData.append("description", description)
+    postData.append("category", category)
+    postData.append("slug", slug)
+    postData.append("name", name)
+    postData.append("id", _id)
+    dispatch(createAction(postData))
   };
   return (
     <>
@@ -76,7 +90,7 @@ const CreatePost = (event) => {
         <title>New Post - Vital Blog</title>
         <meta name="description" content="Create New Post" />
       </Helmet>
-      
+
       <div className="create__post">
         <Container>
           <Row>
