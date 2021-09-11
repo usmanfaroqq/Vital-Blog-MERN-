@@ -4,10 +4,6 @@
   color: white;
   font-size: 13px;
   user-select: none;
-<<<<<<< HEAD
-
-=======
->>>>>>> 3e7cfe9 (ok)
 }
 @include responsive(tablet) {
   .for-hidden {
@@ -83,20 +79,13 @@
 .lower__navbar {
   border-top: 0.5px solid gray !important;
   margin-top: 18px;
-<<<<<<< HEAD
-
-=======
   user-select: none;
->>>>>>> 3e7cfe9 (ok)
   &-text {
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
     color: black !important;
-<<<<<<< HEAD
-=======
     text-decoration: none;
->>>>>>> 3e7cfe9 (ok)
     @include responsive(tablet) {
       font-size: 13px;
     }
@@ -119,8 +108,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
 .newsFeed {
   margin-left: 10px;
   @include responsive(laptop) {
@@ -138,4 +125,3 @@
     margin-left: 0px;
   }
 }
->>>>>>> 3e7cfe9 (ok)
