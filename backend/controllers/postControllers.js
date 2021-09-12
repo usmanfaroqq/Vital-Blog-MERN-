@@ -35,7 +35,7 @@ const createPost = (req, res) => {
         files.image.name = uuidv4() + "." + extension;
       }
     }
-    const checkSlug = await Post.fineOne({ slug });
+    const checkSlug = await postSchema.findOne({ slug });
     if (checkSlug) {
       errors.push({ msg: "Please choose a unique URL" });
     }
@@ -44,9 +44,23 @@ const createPost = (req, res) => {
     } else {
       const newPath =
         __dirname + `./../../frontend/public/images/${files.image.name}`;
-      fs.copyFile(files.image.path, newPath, (error) => {
+      fs.copyFile(files.image.path, newPath, async(error) => {
         if (!error) {
-          console.log("Image Uploaded");
+          try {
+            const response = await postSchema.create({
+              title,
+              body,
+              image: files.image.name,
+              description,
+              category,
+              slug,
+              userName: name,
+              userId: id,
+            })
+            return res.status(200).json({msg: 'Your Post have been submitted successfully'})
+          } catch (error) {
+            return res.status(500).json({errors: error, msg: error.message})
+          }
         }
       });
     }

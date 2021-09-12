@@ -25,7 +25,7 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  useName: {
+  userName: {
     type: String,
     required: true,
   },

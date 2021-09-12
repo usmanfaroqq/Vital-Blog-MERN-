@@ -1,7 +1,9 @@
-import { POST_ERRORS, SET_LOADER, CLOSE_LOADER } from "../types/PostTypes";
+import { POST_ERRORS, SET_LOADER, CLOSE_LOADER,REDIRECT_TRUE, REDIRECT_FALSE } from "../types/PostTypes";
 const initState = {
   loading: false,
   createErrors: [],
+  redirect: false, 
+  message: '',
 };
 
 const PostReducer = (state = initState, action) => {
@@ -12,7 +14,10 @@ const PostReducer = (state = initState, action) => {
     return { ...state, loading: false };
   } else if (type === POST_ERRORS) {
     return { ...state, createErrors: payload };
-  } else {
+  }else if (type ===REDIRECT_TRUE ){
+    return { ...state, redirect: true };
+  }
+   else {
     return state;
   }
 };
