@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 
 const CreatePost = (props) => {
-  const {createErrors} = useSelector((state) => state.PostReducer)
+  const {createErrors, redirect} = useSelector((state) => state.PostReducer)
   const dispatch = useDispatch();
   const {
     user: { _id, name },
@@ -92,10 +92,13 @@ const CreatePost = (props) => {
   };
   // showing error message
   useEffect(() => {
+    if(redirect){
+      props.history.push("/dashboard");
+    }
     if(createErrors.length !== 0){
       createErrors.map((err) => toast.error(err.msg))
     }
-  },[createErrors])
+  },[createErrors, redirect])
   return (
     <>
       <Helmet>
@@ -175,6 +178,7 @@ const CreatePost = (props) => {
                             aria-label="Floating label select example"
                             className="selectGroup-text"
                             onChange={selectedCategory}
+
                           >
                             <option>News</option>
                             <option>Business</option>

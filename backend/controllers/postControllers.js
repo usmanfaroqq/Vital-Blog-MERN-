@@ -2,6 +2,8 @@ const formidable = require("formidable");
 const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const postSchema = require("../models/Post");
+uuidv4();
+
 
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
@@ -44,7 +46,7 @@ const createPost = (req, res) => {
     } else {
       const newPath =
         __dirname + `./../../frontend/public/images/${files.image.name}`;
-      fs.copyFile(files.image.path, newPath, async(error) => {
+      fs.copyFile(files.image.path, newPath, async (error) => {
         if (!error) {
           try {
             const response = await postSchema.create({
@@ -56,10 +58,12 @@ const createPost = (req, res) => {
               slug,
               userName: name,
               userId: id,
-            })
-            return res.status(200).json({msg: 'Your Post have been submitted successfully'})
+            });
+            return res
+              .status(200)
+              .json({ msg: "Your Post have been submitted successfully" });
           } catch (error) {
-            return res.status(500).json({errors: error, msg: error.message})
+            return res.status(500).json({ errors: error, msg: error.message });
           }
         }
       });
