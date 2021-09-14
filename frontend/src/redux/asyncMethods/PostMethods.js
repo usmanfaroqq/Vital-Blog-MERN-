@@ -46,9 +46,9 @@ export const fetchPosts = (id) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await axios.get(`/posts/${id}`, config);
+      const { data: {response} } = await axios.get(`/posts/${id}`, config);
       dispatch({type: CLOSE_LOADER});
-      console.log(data)
+      console.log(response)
     } catch (error) {
       dispatch({ type: CLOSE_LOADER})
     }

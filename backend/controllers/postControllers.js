@@ -77,7 +77,7 @@ const fetchPosts = async (req, res) => {
 
   try {
     const response = await postSchema.find({ userId: id });
-    return res.status(200).json({ data: response });
+    return res.status(200).json({ response: response });
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message });
   }
