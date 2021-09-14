@@ -6,12 +6,11 @@ import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 const Dashboard = () => {
-  const { redirect, message } = useSelector((state) => state.PostReducer);
-  
+  const { redirect, message, loading } = useSelector((state) => state.PostReducer);
   const {user : {_id}} = useSelector((state) => state.AuthReducer)
-  console.log(_id)
+  const {posts} = useSelector((state) => state.FetchPosts)
   const dispatch = useDispatch();
-
+  console.log('ok', posts)
   useEffect(() => {
     if (redirect) {
       dispatch({ type: REDIRECT_FALSE });

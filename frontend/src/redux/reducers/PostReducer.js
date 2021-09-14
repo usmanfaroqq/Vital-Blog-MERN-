@@ -7,6 +7,7 @@ import {
   REDIRECT_FALSE,
   SET_MESSAGE,
   REMOVE_MESSAGE,
+  SET_POSTS
 } from "../types/PostTypes";
 
 const initState = {
@@ -14,9 +15,10 @@ const initState = {
   createErrors: [],
   redirect: false,
   message: '',
+  posts: [],
 };
 
-const PostReducer = (state = initState, action) => {
+export const PostReducer = (state = initState, action) => {
   const { type, payload } = action;
   if (type === SET_LOADER) {
     return { ...state, loading: true };
@@ -37,6 +39,15 @@ const PostReducer = (state = initState, action) => {
   } else {
     return state;
   }
-};
+};// Posting new blog
 
-export default PostReducer;
+
+
+export const FetchPosts = (state = initState, action) => {
+    const {type, payload} = action;
+    if (type === SET_POSTS) {
+      return {...state, posts: payload}
+    }else{
+      return state;
+    }
+}

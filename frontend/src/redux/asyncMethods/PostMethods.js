@@ -6,8 +6,12 @@ import {
   CLOSE_LOADER,
   REDIRECT_TRUE,
   SET_MESSAGE,
+  SET_POSTS
 } from "../types/PostTypes";
 const token = localStorage.getItem("myToken");
+
+
+
 export const createAction = (formData) => {
   return async (dispatch, getState) => {
     const {
@@ -34,6 +38,7 @@ export const createAction = (formData) => {
   };
 }; // Posting content
 
+
 export const fetchPosts = (id) => {
   return async (dispatch, getState) => {
     const {
@@ -46,9 +51,9 @@ export const fetchPosts = (id) => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data: {response} } = await axios.get(`/posts/${id}`, config);
+      const { data: {postData} } = await axios.get(`/posts/${id}`, config);
       dispatch({type: CLOSE_LOADER});
-      console.log(response)
+      dispatch({ type: SET_POSTS, payload: postData})
     } catch (error) {
       dispatch({ type: CLOSE_LOADER})
     }
