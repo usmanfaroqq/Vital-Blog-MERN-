@@ -2,6 +2,10 @@ const formidable = require("formidable");
 const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const postSchema = require("../models/Post");
+const { model, Schema } = require("mongoose");
+// const ObjectId = Schema.Types.ObjectId
+
+const ObjectId = require('mongoose').ObjectID;
 
 const createPost = (req, res) => {
   const form = formidable({ multiples: true });
@@ -72,7 +76,7 @@ const createPost = (req, res) => {
 
 // fetch post
 const fetchPosts = async (req, res) => {
-  const id = req.params.id;
+  const id = ObjectId(req.params.id);
 
   try {
     const response = await postSchema.find({ userId: id });

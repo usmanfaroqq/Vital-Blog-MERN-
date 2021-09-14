@@ -36,9 +36,9 @@ export const createAction = (formData) => {
 
 export const fetchPosts = (id) => {
   return async (dispatch, getState) => {
-    // const {
-    //   AuthReducer: { token },
-    // } = getState();
+    const {
+      AuthReducer: { token },
+    } = getState();
     dispatch({ type: SET_LOADER });
     try {
       const config = {

@@ -7,7 +7,9 @@ import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 const Dashboard = () => {
   const { redirect, message } = useSelector((state) => state.PostReducer);
+  
   const {user : {_id}} = useSelector((state) => state.AuthReducer)
+  console.log(_id)
   const dispatch = useDispatch();
 
   useEffect(() => {
