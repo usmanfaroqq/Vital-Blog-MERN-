@@ -5,9 +5,8 @@ import { REDIRECT_FALSE, REMOVE_MESSAGE } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
 import swal from "sweetalert";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
-import { Col, Container, Row , Button} from "react-bootstrap";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 
 const Dashboard = () => {
   const { redirect, message, loading } = useSelector(
@@ -54,18 +53,29 @@ const Dashboard = () => {
         <Row>
           <div className="dashboard">
             <h1>Your blogs</h1>
-            
-          
-          <div className="dashboard__body">
-            <div className="dashboard__body-header d-flex gap-4">
-            <h4>Published</h4>
-            <h4><Link to="/new-post" style={{textDecoration:'none'}}>Create new blog</Link></h4>
-            </div>
-          <Col md={12}>
-            
-          </Col>
 
-          </div>  
+            <div className="dashboard__body">
+              <div className="dashboard__body-header d-flex gap-4">
+                <h4>Published</h4>
+                <h4>
+                  <Link to="/new-post" style={{ textDecoration: "none" }}>
+                    Create new blog
+                  </Link>
+                </h4>
+              </div>
+              <Col md={12}>
+                <div className="dashboard__body-card">
+                <div className="dashboard__body-middle">
+                  <h2>Content Title</h2>
+                  <h5>Content Short body</h5>
+                </div>
+                <div className="dashboard__body-lower ">
+                  <p>published date</p>
+                  <p>others</p>
+                </div>
+                </div>
+              </Col>
+            </div>
           </div>
         </Row>
       </Container>

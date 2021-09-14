@@ -4,12 +4,37 @@
   & h1 {
     @extend %pageTitle;
   }
-  &__body{
-  margin-top: 5rem;
-    &-header{
+  &__body {
+    margin-top: 5rem;
+    &-header {
+      font-family: $headline2;
+      font-weight: 500;
+      @extend %headlineBorderBottom;
+    }
+    &-card {
+      @extend %headlineBorderBottom;
+    }
+    &-middle {
+      margin-top: 3rem;
+      & h2 {
+        font-weight: 700;
+        font-size: 16px;
         font-family: $headline2;
-        font-weight:500;
-       @extend %headlineBorderBottom;
+      }
+      & h5 {
+        font-weight: 400;
+        font-size: 15px;
+        color: #757575;
+      }
+    }
+    &-lower {
+      display: flex;
+      & p {
+        margin-top: 1rem;
+        font-size: 14px;
+        color: #757575;
+        font-family: $headline2;
+      }
     }
   }
 }
