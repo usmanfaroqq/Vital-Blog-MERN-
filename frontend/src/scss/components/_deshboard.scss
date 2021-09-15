@@ -35,6 +35,13 @@
         color: #757575;
         font-family: $headline2;
       }
+      &-btn{
+        background-color: white;
+        outline: none;
+        border: none;
+        color: black;
+        font-size: 14px;
+      }
     }
   }
 }

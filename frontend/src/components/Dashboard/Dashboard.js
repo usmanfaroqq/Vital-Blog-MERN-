@@ -8,7 +8,9 @@ import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
-
+import { BsThreeDots } from "react-icons/bs";
+import { BiShare } from "react-icons/bi";
+import {Dropdown} from 'react-bootstrap'
 const Dashboard = () => {
   const { redirect, message, loading } = useSelector(
     (state) => state.PostReducer
@@ -65,18 +67,46 @@ const Dashboard = () => {
                 </h4>
               </div>
               <Col md={12}>
-                {!loading ? posts.length > 0 ? posts.map(post => (
-                   <div className="dashboard__body-card" key={post._id}>
-                   <div className="dashboard__body-middle">
-                     <h2><Link style={{ textDecoration: "none" }}>{post.title}</Link></h2>
-                     <h5>Content Short body</h5>
-                   </div>
-                   <div className="dashboard__body-lower ">
-                     <p>published date</p>
-                     <p>others</p>
-                   </div>
-                   </div>
-                )) :  "You don't have any posts" : <DashboardSkeleton length={posts.length}/> }
+                {!loading ? (
+                  posts.length > 0 ? (
+                    posts.map((post) => (
+                      <div className="dashboard__body-card" key={post._id}>
+                        <div className="dashboard__body-middle">
+                          <h2>
+                            <Link style={{ textDecoration: "none" }}>
+                              {post.title}
+                            </Link>
+                          </h2>
+                          <h5>Content Short body</h5>
+                        </div>
+                        <div className="dashboard__body-lower gap-4">
+                          <p>{post.createdAt}</p>
+                          {/* <p><BiShare className="dashboard__body-lower-btn "  /></p> */}
+                          <p>
+                            <Dropdown  >
+                              <Dropdown.Toggle className="dashboard__body-lower-btn "  style={{backgroundColor:'white', border:'none', outline:'none', color: 'black'}}
+                                id="dropdown-basic">
+                                <BsThreeDots/>
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1">
+                                <p>Edit</p>
+                                </Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">
+                                <p>Delete</p>
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <h1>you haven't written anything yet.</h1>
+                  )
+                ) : (
+                  <DashboardSkeleton length={posts.length} />
+                )}
               </Col>
             </div>
           </div>
