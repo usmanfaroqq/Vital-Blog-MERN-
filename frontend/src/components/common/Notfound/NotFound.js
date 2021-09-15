@@ -10,7 +10,7 @@ const NotFound = () => {
         <meta name="description" content="Page not found" />
       </Helmet>
       <div className="notFound__container">
-        <h1 className="notFound__container-h1">Oops! Page Not Found</h1>
+        <h1 className="notFound__container-404Header">Oops! Page Not Found</h1>
         <img src={errorImage} alt="errorImage" />
       </div>
     </div>

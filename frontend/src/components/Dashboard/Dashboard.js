@@ -11,6 +11,7 @@ import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
 import { BsThreeDots } from "react-icons/bs";
 import { BiShare } from "react-icons/bi";
 import {Dropdown} from 'react-bootstrap'
+import EmptyShow from "../common/EmptyShow/EmptyShow";
 const Dashboard = () => {
   const { redirect, message, loading } = useSelector(
     (state) => state.PostReducer
@@ -102,7 +103,7 @@ const Dashboard = () => {
                       </div>
                     ))
                   ) : (
-                    <h1>you haven't written anything yet.</h1>
+                    <EmptyShow/>
                   )
                 ) : (
                   <DashboardSkeleton length={posts.length} />
