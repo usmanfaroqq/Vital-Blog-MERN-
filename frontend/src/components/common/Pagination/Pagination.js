@@ -14,13 +14,12 @@ const DashboardPagination = ({ count, page, perPage }) => {
     startLoop = 1;
   }
   const links = () => {
-    let active = false; // clicked or not
     const store = [];
     for (let number = startLoop; number <= endLoop; number++) {
       store.push(
         
-          <Pagination.Item  key={number}  >
-              <Link className="link" to={`/dashboard/${number}`}>{number}</Link>
+          <Pagination.Item  key={number}  className={number == page ? 'active' :  "unClicked"}>
+              <Link className="link" to={`/dashboard/${number}`} style={{color: 'black'}}>{number}</Link>
           </Pagination.Item>
       );
     }
