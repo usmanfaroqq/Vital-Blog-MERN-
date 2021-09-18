@@ -11,7 +11,7 @@ import { POST_RESET } from "../../redux/types/PostTypes";
 const EditPost = () => {
   const { id } = useParams();
   // Body post content React quill
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
   const [editState, setEditState] = useState({
     title: "",
     description: "",
@@ -33,11 +33,12 @@ const EditPost = () => {
   }, [post]);
   const updateEditedPost = event => {
     event.preventDefault();
-    dispatch(updatePost({
-      title: editState.title,
-      body: value,
-      description: editState.description,
-    }))
+    // console.log(value)
+    // dispatch(updatePost({
+    //   title: editState.title,
+    //   body: value,
+    //   description: editState.description,
+    // }))
   }
   console.log(post)
   return (
@@ -70,7 +71,7 @@ const EditPost = () => {
                     </div>
                   </div>
 
-                  <div className="textInputGroup">
+                  {/* <div className="textInputGroup">
                     <label htmlFor="body">
                       Describe your content in detail...
                     </label>
@@ -81,7 +82,7 @@ const EditPost = () => {
                       value={value}
                       onChange={setValue}
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <Row>
@@ -112,7 +113,7 @@ const EditPost = () => {
                           </p>
                         </div>
                       </Col>
-                      <Col md={6}>
+                      {/* <Col md={6}>
                         <div>
                           <Form.Group
                             controlId="formFile"
@@ -126,7 +127,7 @@ const EditPost = () => {
                             />
                           </Form.Group>
                         </div>
-                      </Col>
+                      </Col> */}
                     </Row>
                     <div className="group">
                       <input
