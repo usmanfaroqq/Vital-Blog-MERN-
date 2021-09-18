@@ -31,15 +31,16 @@ const EditPost = () => {
       dispatch(fetchSinglePost(id));
     }
   }, [post]);
-  const updateEditedPost = event => {
-    event.preventDefault();
-    // console.log(value)
-    // dispatch(updatePost({
-    //   title: editState.title,
-    //   body: value,
-    //   description: editState.description,
-    // }))
-  }
+  console.log(post)
+  // const updateEditedPost = event => {
+  //   event.preventDefault();
+  //   // console.log(value)
+  //   // dispatch(updatePost({
+  //   //   title: editState.title,
+  //   //   body: value,
+  //   //   description: editState.description,
+  //   // }))
+  // }
   console.log(post)
   return (
     <div>
@@ -51,7 +52,7 @@ const EditPost = () => {
         <Container>
           <Row>
             <Col md={12}>
-              <form onSubmit={updateEditedPost}>
+              <form>
                 <div className="create__post-card">
                   <div className="create__post-group">
                     <h2>Post Information</h2>

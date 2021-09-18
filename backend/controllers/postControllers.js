@@ -94,9 +94,10 @@ const fetchPosts = async (req, res) => {
 const fetchSinglePost = async (req, res) => {
   const id = req.params.id;
   try {
-    const singlePost = await postSchema.find({_id: id})
+    const singlePost = await postSchema.findOne({_id: id})
     return res.status(200).json({singlePost})
   } catch (error) {
+    console.log(error.message)
     return res.status(500).json({ errors: error, msg: error.message });
   }
 };
