@@ -8,8 +8,19 @@ const EditCoverImage = () => {
     imagePreview: "",
   });
   const imageHandle = (event) => {
-    
-  }
+    if (event.target.files.length > 0) {
+      setState({
+        ...state,
+        image: event.target.files[0],
+        imageName: event.target.files[0].name,
+      });
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+        setState({ ...state, imagePreview: fileReader.result });
+      };
+      fileReader.readAsDataURL(event.target.files[0]);
+    }
+  };
   return (
     <div className="create__post">
       <Helmet>
@@ -19,7 +30,7 @@ const EditCoverImage = () => {
       <Container>
         <Row>
           <h1 className="editMyBlogTitle">Change your blog cover photo</h1>
-          <Col md={6}>
+          <Col md={12}>
             <div>
               <Form.Group controlId="formFile" className="mb-3 selectGroup">
                 <Form.Label>Featured Image *</Form.Label>
@@ -32,17 +43,24 @@ const EditCoverImage = () => {
               </Form.Group>
             </div>
           </Col>
-          <Col md={6}>
+          <Col md={12}>
             <div className="textInputGroup">
               <div className="imagePreview">
-                {/* {imagePreview ? (
-                  <img src={imagePreview} alt={imagePreview.name} />
+                {state.imagePreview ? (
+                  <img src={state.imagePreview} alt={state.imagePreview} />
                 ) : (
                   ""
-                )} */}
+                )}
               </div>
             </div>
           </Col>
+            <div className="group">
+              <input
+                type="submit"
+                value="Update Image"
+                className="create__post-submitBlogBtn"
+              />
+            </div>
         </Row>
       </Container>
     </div>
