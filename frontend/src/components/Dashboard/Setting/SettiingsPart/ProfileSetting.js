@@ -1,12 +1,15 @@
 import React from "react";
-import { Col, Container, Row, FloatingLabel, Form } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import SideBar from "../SideBar";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import { Helmet } from "react-helmet";
 
 const ProfileSetting = () => {
   return (
     <Container>
+      <Helmet>
+        <title>Profile - Vital Blog</title>
+        <meta name="profile" content="profile" />
+      </Helmet>
       <Row>
         <Col md={4}>
           <SideBar />
@@ -17,9 +20,17 @@ const ProfileSetting = () => {
             <div className="profile__name">
               <h3>Name</h3>
               <div className="borderBottom">
-               <input type="text" className="profile__name-Input" placeholder="Name"/>
+                <input
+                  type="text"
+                  className="profile__name-Input"
+                  placeholder="Name"
+                />
               </div>
-              <p className="profile__name-text"> Your name appears on your Profile page, as your byline, and in your responses. It is a required field.</p>
+              <p className="profile__name-text">
+                {" "}
+                Your name appears on your Profile page, as your byline, and in
+                your responses. It is a required field.
+              </p>
             </div>
           </div>
         </Col>
