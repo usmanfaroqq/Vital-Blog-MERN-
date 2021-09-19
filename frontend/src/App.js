@@ -15,6 +15,7 @@ import EditPost from "./components/Create/EditPost";
 import UnderConstruction from "./components/common/UnderConstruction/UnderConstruction";
 import PostEditPageProgress from "./skelatons/PostEditPageProgress";
 import EditCoverImage from "./components/Create/EditCoverImage";
+import SideBar from "./components/Dashboard/Setting/SideBar";
 
 
 // under construction routes
@@ -37,7 +38,7 @@ const App = () => {
         <PrivateRoutes path="/me/setting" exact  component={props => <> <UpperNavbar/> <UnderConstruction/></> }/>
         <PrivateRoutes path="/edit/:id" exact  component={props => <> <UpperNavbar/> <EditPost/></> }/>
         <PrivateRoutes path="/edit/cover-photo/:id" exact  component={props => <> <UpperNavbar/> <EditCoverImage/></> }/>
-        <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <PostEditPageProgress/></> }/>
+        <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <SideBar/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
     </Router>

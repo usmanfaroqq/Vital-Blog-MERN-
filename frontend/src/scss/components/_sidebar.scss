@@ -1,0 +1,32 @@
+.sidebar {
+  margin-top: 8rem;
+  font-family: $headline2;
+  user-select: none;
+  &__setting {
+    & h1 {
+      font-weight: 600;
+    }
+    &-list {
+      list-style: none;
+      margin-top: 2rem;
+    }
+  }
+  &__sidebar-footer {
+    margin-top: 7rem;
+    @extend %headlineBorderTop
+  }
+}
+.links {
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  color: #7575a1;
+  font-size: 2rem;
+  font-weight: 400;
+}
+.sidebar-footer {
+  text-decoration: none;
+  color: #7575a1;
+  margin-left: 1rem;
+  font-size: 16px;
+  font-weight: 400;
+}
