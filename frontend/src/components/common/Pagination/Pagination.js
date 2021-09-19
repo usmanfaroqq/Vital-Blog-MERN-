@@ -17,15 +17,27 @@ const DashboardPagination = ({ count, page, perPage }) => {
     const store = [];
     for (let number = startLoop; number <= endLoop; number++) {
       store.push(
-        
-          <Pagination.Item  key={number}  className={number == page ? 'active' :  "unClicked"}>
-              <Link className="link" to={`/dashboard/${number}`} style={{color: 'black'}}>{number}</Link>
-          </Pagination.Item>
+        <Pagination.Item
+          key={number}
+          className={number == page ? "active" : "unClicked"}
+        >
+          <Link
+            className="link"
+            to={`/dashboard/${number}`}
+            style={{ color: "black" }}
+          >
+            {number}
+          </Link>
+        </Pagination.Item>
       );
     }
     return store;
   };
-      return totalPages ?  <Pagination  className="pagination">{links()}</Pagination> : ''
+  return totalPages && count > 3 ? (
+    <Pagination className="pagination">{links()}</Pagination>
+  ) : (
+    ""
+  );
 };
 
 export default DashboardPagination;

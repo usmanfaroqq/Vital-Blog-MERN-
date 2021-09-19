@@ -149,12 +149,12 @@ const Dashboard = () => {
                                   </Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
-                                  <p
+                                  <Link to="#"
                                     className="dashboard__body-lower-link"
                                     onClick={(e) => deletePost(post._id)}
                                   >
                                     Delete Post
-                                  </p>
+                                  </Link>
                                 </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
