@@ -16,11 +16,11 @@ const PasswordSetting = () => {
     userId: null,
   });
   const dispatch = useDispatch();
+  const {push} = useHistory();
   const {
     user: { _id },
   } = useSelector((state) => state.AuthReducer);
-  console.log(_id);
-  const { loading } = useSelector((state) => state.PostReducer);
+  const { loading, redirect } = useSelector((state) => state.PostReducer);
   const { profileErrors } = useSelector((state) => state.UpdateName);
   const handleUpdatePassword = (event) => {
     event.preventDefault();
@@ -39,6 +39,12 @@ const PasswordSetting = () => {
       dispatch({ type: REMOVE_PROFILE_ERRORS });
     }
   }, [profileErrors]);
+  useEffect(() => { // changing roue
+    if (redirect) {
+      push("/dashboard");
+    }
+  }, [redirect]);
+
   return !loading ? (
     <>
       <Container>

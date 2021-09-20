@@ -55,7 +55,8 @@ export const updatePassword =  (userPassword) => {
     try {
       const {data} = await axios.post('/update-password', userPassword, config);
       dispatch({ type: CLOSE_LOADER });
-      console.log(data)
+      dispatch({ type: SET_MESSAGE, payload: data.msg });
+      dispatch({ type: REDIRECT_TRUE });
     } catch (error) {
       dispatch({ type: CLOSE_LOADER });
       dispatch({
