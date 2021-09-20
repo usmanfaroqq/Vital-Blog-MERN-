@@ -4,11 +4,6 @@ const { body, validationResult } = require("express-validator");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 
-const createToken = (user) => {
-  return jwt.sign({ user }, process.env.SECRET, {
-    expiresIn: "7d",
-  });
-};
 
 const changeUserName = async (req, res) => {
   const { name, id } = req.body;
@@ -62,14 +57,14 @@ const changePassword = async (req, res) => {
           // Encrypting Password
           const salt = await bcrypt.genSalt(10);
           const hash = await bcrypt.hash(newPassword, salt);
-          const newUser = await postSchema.findOneAndUpdate(
+          const newUser = await userSchema.findOneAndUpdate(
             { _id: user },
             { password: hash },
             { new: true }
           );
           return res
             .status(200)
-            .json({ token, msg: "Your password has been changed" });
+            .json({ msg: "Your password has been changed" });
         } catch (error) {
           return res.status(500).json({ errors });
         }

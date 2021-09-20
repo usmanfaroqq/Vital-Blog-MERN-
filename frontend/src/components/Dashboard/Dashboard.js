@@ -104,6 +104,11 @@ const Dashboard = () => {
                     Create new blog
                   </Link>
                 </h4>
+                <h4>
+                  <Link to="/me/profile" style={{ textDecoration: "none" }}>
+                   Setting
+                  </Link>
+                </h4>
               </div>
               <Col md={12}>
                 {!loading ? (
