@@ -10,7 +10,7 @@ import {
 } from "../../redux/types/PostTypes";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchPosts } from "../../redux/asyncMethods/PostMethods";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import DashboardSkeleton from "../../skelatons/DashboardSkeleton";
 import { BsThreeDots } from "react-icons/bs";
@@ -18,7 +18,7 @@ import { Dropdown } from "react-bootstrap";
 import EmptyShow from "../common/EmptyShow/EmptyShow";
 import DashboardPagination from "../common/Pagination/Pagination";
 import axios from "axios";
-import swal from "sweetalert";
+import moment from "moment";
 
 const Dashboard = () => {
   const { redirect, message, loading } = useSelector(
@@ -121,7 +121,7 @@ const Dashboard = () => {
                           <h5>Content Short body</h5>
                         </div>
                         <div className="dashboard__body-lower gap-4">
-                          <p>{post.createdAt}</p>
+                          <p>Published {moment(post.createdAt).fromNow()}</p>
                           {/* <p><BiShare className="dashboard__body-lower-btn "  /></p> */}
                           <p>
                             <Dropdown>

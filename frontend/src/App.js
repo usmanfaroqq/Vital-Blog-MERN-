@@ -16,6 +16,7 @@ import UnderConstruction from "./components/common/UnderConstruction/UnderConstr
 import EditCoverImage from "./components/Create/EditCoverImage";
 import SideBar from "./components/Dashboard/Setting/SideBar";
 import ProfileSetting from "./components/Dashboard/Setting/SettiingsPart/ProfileSetting";
+import PasswordSetting from "./components/Dashboard/Setting/SettiingsPart/PasswordSetting";
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
         <PrivateRoutes path="/edit/:id" exact  component={props => <> <UpperNavbar/> <EditPost/></> }/>
         <PrivateRoutes path="/edit/cover-photo/:id" exact  component={props => <> <UpperNavbar/> <EditCoverImage/></> }/>
         <PrivateRoutes path="/me/profile" exact  component={props => <> <UpperNavbar/> <ProfileSetting/></> }/>
+        <PrivateRoutes path="/me/password" exact  component={props => <> <UpperNavbar/> <PasswordSetting/></> }/>
         <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <SideBar/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
