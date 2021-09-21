@@ -26,7 +26,7 @@ const HomeAllPosts = () => {
         {!loading ? (
           posts.length > 0 ? (
             posts.map((post) => (
-              <div className="blogCard">
+              <div className="blogCard" key={post._id}>
                 <Row>
                   <Col md={4}>
                     <div>
@@ -41,7 +41,7 @@ const HomeAllPosts = () => {
                     <div>
                       <Card.Body>
                         <Card.Title className="blogCard-title">
-                          <Link className="blogCard-title-link">
+                          <Link className="blogCard-title-link" to={`/post/details/${post._id}`}>
                             {post.title}
                           </Link>
                         </Card.Title>
