@@ -3,8 +3,10 @@ import { Helmet } from "react-helmet";
 import { Container, Row, Col } from "react-bootstrap";
 import HomeAllPosts from "./HomeAllPosts";
 import HomeRightBar from "./HomeRightBar";
+import {useSelector} from "react-redux";
 
 const Home = () => {
+  const {loading} = useSelector((state) => state.PostReducer)
   return (
     <>
       <Helmet>
