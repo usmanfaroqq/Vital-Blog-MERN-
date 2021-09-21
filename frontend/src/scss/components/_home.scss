@@ -34,5 +34,33 @@
 }
 .homeRightBar{
     top: 0;
+    margin-left: 5rem;
     position: sticky;
+
+}
+.homeRightBarCard{
+  margin-top: 2.3rem;
+  user-select: none;
+  &-card{
+    outline: none;
+    border: none;
+    border-radius: none;
+    margin-top: 1.2rem;
+    & h1{
+      font-size:16px;
+      font-weight:500;
+      font-family: $headline2;
+    }
+  }
+  &-link{
+    font-size:16px;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+  }
+  &-text{
+    font-size: 13px;
+    font-weight: 400;
+    color: #757575;
+  }
 }
