@@ -16,11 +16,18 @@ const Details = () => {
   useEffect(() => {
     dispatch(singlePostDetails(id));
   }, [id]);
+
+  // comment
+  const [comment, setComment] = useState("");
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    console.log(comment);
+  };
   return (
     <div>
       <Helmet>
         <title>{postDetails.title}</title>
-        <meta name="home" content="blogs" />
+        <meta name="details" content="details" />
       </Helmet>
       <Container>
         <Row>
@@ -48,21 +55,27 @@ const Details = () => {
               "Ok"
             )}
 
-            <div className="comment">
-              <h1>Discussion</h1>
-              <div className="comment-box">
-                <textarea
-                  name="comment"
-                  cols="30"
-                  rows="10"
-                  className="comment-box-textArea"
-                  placeholder="Comment your Discussion "
-                ></textarea>
-                <Button variant="primary" className="comment-btn">
-                  Comment
-                </Button>
+            {user ? (
+              <div className="comment">
+                <h1>Discussion</h1>
+                <form onSubmit={handleAddComment}>
+                  <div className="comment-box">
+                    <textarea
+                      name="comment"
+                      className="comment-box-textArea"
+                      placeholder="Comment your Discussion "
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                    ></textarea>
+                    <button className="comment-btn btn btn-primary">
+                      Comment
+                    </button>
+                  </div>
+                </form>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
           </Col>
           <Col md={4}>
             <div className="homeRightBar">
