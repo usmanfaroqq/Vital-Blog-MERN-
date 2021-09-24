@@ -1,5 +1,6 @@
 const postSchema = require("../models/Post");
 const commentSchema = require("../models/Comment");
+const { post } = require("../routes/postRoutes");
 
 // for all posts in home page
 const homeAllPost = async (req, res) => {
@@ -25,7 +26,10 @@ const singlePostDetails = async (req, res) => {
   const id = req.params.id;
   try {
     const postWithDetails = await postSchema.findOne({ slug: id });
-    return res.status(200).json({ postWithDetails });
+    const comments = await commentSchema
+      .find({ postId: postWithDetails._id })
+      .sort({ updatedAt: -1 }); // for showing comment
+    return res.status(200).json({ postWithDetails, comments });
   } catch (error) {
     return res.status(500).json({ errors: error, msg: error.message });
   }

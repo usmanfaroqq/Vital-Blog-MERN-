@@ -10,11 +10,12 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import HomeRightBar from "../Home/HomeRightBar";
 import moment from "moment";
 import DetailSkeleton from "../../skelatons/DetailsSkeleton";
+import Comments from "./Comments";
 // import { htmlToText } from 'html-to-text';
 
 const Details = () => {
   const { id } = useParams();
-  const { loading, postDetails } = useSelector((state) => state.PostReducer);
+  const { loading, postDetails, comments } = useSelector((state) => state.PostReducer);
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -63,6 +64,7 @@ const Details = () => {
             )}
 
             {user ? (
+              <>
               <div className="comment">
                 <h1>Discussion</h1>
                 <form onSubmit={handleAddComment}>
@@ -80,6 +82,8 @@ const Details = () => {
                   </div>
                 </form>
               </div>
+              <Comments comments={comments}/>
+              </>
             ) : (
               ""
             )}

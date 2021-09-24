@@ -12,6 +12,7 @@ import {
   SET_UPDATE_ERRORS,
   UPDATE_IMAGE_ERRORS,
   SET_POST_DETAILS,
+  COMMENTS
 } from "../types/PostTypes";
 
 export const allHomePosts = (page) => {
@@ -35,10 +36,12 @@ export const singlePostDetails = (id) => {
     dispatch({ type: SET_LOADER });
     try {
       const {
-        data: { postWithDetails },
+        data: { postWithDetails, comments, },
       } = await axios.get(`/post/details/${id}`);
+      
       dispatch({ type: CLOSE_LOADER });
       dispatch({ type: SET_POST_DETAILS, payload: postWithDetails });
+      dispatch({ type: COMMENTS, payload: comments });
     } catch (error) {
       dispatch({ type: CLOSE_LOADER });
       console.log(error);
