@@ -22,7 +22,7 @@ const Comments = ({ comments }) => {
       ))}
     </div>
   ) : (
-    "No comment found"
+    ""
   );
 };
 

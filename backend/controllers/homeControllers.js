@@ -1,6 +1,5 @@
 const postSchema = require("../models/Post");
 const commentSchema = require("../models/Comment");
-const { post } = require("../routes/postRoutes");
 
 // for all posts in home page
 const homeAllPost = async (req, res) => {

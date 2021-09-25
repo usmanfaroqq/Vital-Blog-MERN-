@@ -69,13 +69,13 @@ const Details = () => {
             {user ? (
               <>
                 <div className="comment">
-                  <h1>Discussion</h1>
+                  <h1>Discussion {comments.length}</h1>
                   <form onSubmit={handleAddComment}>
                     <div className="comment-box">
                       <textarea
                         name="comment"
                         className="comment-box-textArea"
-                        placeholder="Comment your Discussion "
+                        placeholder="Comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                       ></textarea>

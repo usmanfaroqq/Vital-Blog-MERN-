@@ -10,7 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
 const CreatePost = (props) => {
-  const history = useHistory()
+  const history = useHistory();
   const { createErrors, redirect } = useSelector((state) => state.PostReducer);
   const dispatch = useDispatch();
   const {
@@ -68,11 +68,14 @@ const CreatePost = (props) => {
 
   const [category, setCategory] = useState([]);
   const selectedCategory = (event) => {
+    // setCategory({category: event.target.value});
+    // console.log(category)
     // select category
     setCategory({
       ...category
-      [event.target.name] = event.target.value
-    })
+      [event.target.name] = event.target.value,
+    });
+    console.log("cate",category)
   };
 
   // Body post content React quill
@@ -95,8 +98,8 @@ const CreatePost = (props) => {
   };
   // showing error message
   useEffect(() => {
-    if (redirect ) {
-      history.push('/dashboard');
+    if (redirect) {
+      history.push("/dashboard");
     }
     if (createErrors.length !== 0) {
       createErrors.map((err) => toast.error(err.msg));
@@ -180,39 +183,21 @@ const CreatePost = (props) => {
                           <Form.Select
                             aria-label="Floating label select example"
                             className="selectGroup-text"
-                            onChange={selectedCategory}
                             value={category.name}
+                            onChange={selectedCategory}
                           >
-                            <option>
-                              Choose category
-                            </option>
-                            <option name="news" >
-                              News
-                            </option>
-                            <option name="business" >
-                              Business
-                            </option>
-                            <option name="magazine">
-                              Magazine
-                            </option>
-                            <option name="sport" >
-                              Sport
-                            </option>
-                            <option name="arts" >
-                              Arts
-                            </option>
-                            <option name="culture" >
-                              Culture
-                            </option>
-                            <option name="politics" >
-                              Politics
-                            </option>
-                            <option name="style" >
-                              Style
-                            </option>
-                            <option name="travel" >
-                              Travel
-                            </option>
+                            <option>Choose category</option>
+
+                            <option name="news">News</option>
+
+                            <option name="business">Business</option>
+                            <option name="magazine">Magazine</option>
+                            <option name="sport">Sport</option>
+                            <option name="arts">Arts</option>
+                            <option name="culture">Culture</option>
+                            <option name="politics">Politics</option>
+                            <option name="style">Style</option>
+                            <option name="travel">Travel</option>
                           </Form.Select>
                         </div>
                       </Col>
