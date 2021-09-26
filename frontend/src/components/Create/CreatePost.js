@@ -8,10 +8,13 @@ import { createAction } from "../../redux/asyncMethods/PostMethods";
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
+import PostEditPageProgress from "../../skelatons/PostEditPageProgress";
 
 const CreatePost = (props) => {
   const history = useHistory();
-  const { createErrors, redirect } = useSelector((state) => state.PostReducer);
+  const { createErrors, redirect, loading } = useSelector(
+    (state) => state.PostReducer
+  );
   const dispatch = useDispatch();
   const {
     user: { _id, name },
@@ -72,10 +75,9 @@ const CreatePost = (props) => {
     // console.log(category)
     // select category
     setCategory({
-      ...category
-      [event.target.name] = event.target.value,
+      ...(category[event.target.name] = event.target.value),
     });
-    console.log("cate",category)
+    console.log("cate", category);
   };
 
   // Body post content React quill
@@ -123,180 +125,189 @@ const CreatePost = (props) => {
           },
         }}
       />
-      <div className="create__post">
-        <Container>
-          <Row>
-            <Col md={12}>
-              <form action="" onSubmit={createNewPost}>
-                <h1>Submit your Post</h1>
-                <div className="create__post-card">
-                  <div className="create__post-group">
-                    <h2>Post Information</h2>
+      {!loading ? (
+        <div className="create__post">
+          <Container>
+            <Row>
+              <Col md={12}>
+                <form action="" onSubmit={createNewPost}>
+                  <h1>Submit your Post</h1>
+                  <div className="create__post-card">
+                    <div className="create__post-group">
+                      <h2>Post Information</h2>
+                      <div className="textInputGroup">
+                        <label htmlFor="title">Topic Title*</label>
+                        <input
+                          type="text"
+                          id="title"
+                          name="title"
+                          className="textInputGroup__control"
+                          placeholder="Blog Title"
+                          onChange={handleInputs}
+                          value={inputState.title}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Row>
+                        <Col md={4}>
+                          <div>
+                            <Form.Group
+                              controlId="formFile"
+                              className="mb-3 selectGroup"
+                            >
+                              <Form.Label>Featured Image *</Form.Label>
+                              <Form.Control
+                                type="file"
+                                name="image"
+                                onChange={imageHandle}
+                                className="selectGroup-text"
+                              />
+                            </Form.Group>
+                          </div>
+                        </Col>
+                        <Col md={4}>
+                          <div className="selectGroup">
+                            <label htmlFor="title">Language</label>
+
+                            <Form.Select
+                              aria-label="Floating label select example"
+                              className="selectGroup-text"
+                            >
+                              <option value="1">English</option>
+                              <option value="2">Bangla</option>
+                            </Form.Select>
+                          </div>
+                        </Col>
+                        <Col md={4}>
+                          <div className="selectGroup">
+                            <label htmlFor="title">Content type</label>
+
+                            <Form.Select
+                              aria-label="Floating label select example"
+                              className="selectGroup-text"
+                              value={category.name}
+                              onChange={selectedCategory}
+                            >
+                              <option>Choose category</option>
+
+                              <option name="news">News</option>
+
+                              <option name="business">Business</option>
+                              <option name="magazine">Magazine</option>
+                              <option name="sport">Sport</option>
+                              <option name="arts">Arts</option>
+                              <option name="culture">Culture</option>
+                              <option name="politics">Politics</option>
+                              <option name="style">Style</option>
+                              <option name="travel">Travel</option>
+                            </Form.Select>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+
                     <div className="textInputGroup">
-                      <label htmlFor="title">Topic Title*</label>
-                      <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        className="textInputGroup__control"
-                        placeholder="Blog Title"
-                        onChange={handleInputs}
-                        value={inputState.title}
+                      <label htmlFor="body">
+                        Describe your content in detail...
+                      </label>
+                      <ReactQuill
+                        theme="snow"
+                        value={value}
+                        onChange={setValue}
+                        placeholder="Lorem Ispum..."
                       />
                     </div>
-                  </div>
-                  <div>
-                    <Row>
-                      <Col md={4}>
-                        <div>
-                          <Form.Group
-                            controlId="formFile"
-                            className="mb-3 selectGroup"
-                          >
-                            <Form.Label>Featured Image *</Form.Label>
-                            <Form.Control
-                              type="file"
-                              name="image"
-                              onChange={imageHandle}
-                              className="selectGroup-text"
-                            />
-                          </Form.Group>
-                        </div>
-                      </Col>
-                      <Col md={4}>
-                        <div className="selectGroup">
-                          <label htmlFor="title">Language</label>
 
-                          <Form.Select
-                            aria-label="Floating label select example"
-                            className="selectGroup-text"
-                          >
-                            <option value="1">English</option>
-                            <option value="2">Bangla</option>
-                          </Form.Select>
-                        </div>
-                      </Col>
-                      <Col md={4}>
-                        <div className="selectGroup">
-                          <label htmlFor="title">Content type</label>
+                    <div>
+                      <Row>
+                        <Col md={6}>
+                          <div className="textInputGroup">
+                            <label htmlFor="description">
+                              Meta description
+                            </label>
+                            <textarea
+                              name="description"
+                              id=""
+                              cols="30"
+                              rows="10"
+                              defaultValue={inputState.description}
+                              onChange={handleDescription}
+                              className="textInputGroup__control"
+                              placeholder="meta description...."
+                              maxLength="200"
+                            ></textarea>
 
-                          <Form.Select
-                            aria-label="Floating label select example"
-                            className="selectGroup-text"
-                            value={category.name}
-                            onChange={selectedCategory}
-                          >
-                            <option>Choose category</option>
-
-                            <option name="news">News</option>
-
-                            <option name="business">Business</option>
-                            <option name="magazine">Magazine</option>
-                            <option name="sport">Sport</option>
-                            <option name="arts">Arts</option>
-                            <option name="culture">Culture</option>
-                            <option name="politics">Politics</option>
-                            <option name="style">Style</option>
-                            <option name="travel">Travel</option>
-                          </Form.Select>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-
-                  <div className="textInputGroup">
-                    <label htmlFor="body">
-                      Describe your content in detail...
-                    </label>
-                    <ReactQuill
-                      theme="snow"
-                      value={value}
-                      onChange={setValue}
-                      placeholder="Lorem Ispum..."
-                    />
-                  </div>
-
-                  <div>
-                    <Row>
-                      <Col md={6}>
-                        <div className="textInputGroup">
-                          <label htmlFor="description">Meta description</label>
-                          <textarea
-                            name="description"
-                            id=""
-                            cols="30"
-                            rows="10"
-                            defaultValue={inputState.description}
-                            onChange={handleDescription}
-                            className="textInputGroup__control"
-                            placeholder="meta description...."
-                            maxLength="200"
-                          ></textarea>
-
-                          <p className="description-p">
-                            {" "}
-                            {inputState.description
-                              ? inputState.description.length
-                              : 0}{" "}
-                          </p>
-                        </div>
-                      </Col>
-                      <Col md={6}>
-                        <Row>
-                          <Col md={11}>
-                            <div className="textInputGroup">
-                              <label htmlFor="title">Blog url</label>
-                              <input
-                                type="text"
-                                name="title"
-                                id="title"
-                                className="textInputGroup__control"
-                                placeholder="Blog url"
-                                value={slug}
-                                onChange={chnageUrl}
-                              />
-                            </div>
-                          </Col>
-                          <Col md={1}>
-                            <div className="create__post-blogUrlBtn ">
-                              {updateSlugBtn ? (
-                                <button
-                                  className="btn btn-warning"
-                                  onClick={updateUrl}
-                                >
-                                  Update
-                                </button>
+                            <p className="description-p">
+                              {" "}
+                              {inputState.description
+                                ? inputState.description.length
+                                : 0}{" "}
+                            </p>
+                          </div>
+                        </Col>
+                        <Col md={6}>
+                          <Row>
+                            <Col md={11}>
+                              <div className="textInputGroup">
+                                <label htmlFor="title">Blog url</label>
+                                <input
+                                  type="text"
+                                  name="title"
+                                  id="title"
+                                  className="textInputGroup__control"
+                                  placeholder="Blog url"
+                                  value={slug}
+                                  onChange={chnageUrl}
+                                />
+                              </div>
+                            </Col>
+                            <Col md={1}>
+                              <div className="create__post-blogUrlBtn ">
+                                {updateSlugBtn ? (
+                                  <button
+                                    className="btn btn-warning"
+                                    onClick={updateUrl}
+                                  >
+                                    Update
+                                  </button>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                            </Col>
+                          </Row>
+                          <div className="textInputGroup">
+                            <div className="imagePreview">
+                              {imagePreview ? (
+                                <img
+                                  src={imagePreview}
+                                  alt={imagePreview.name}
+                                />
                               ) : (
                                 ""
                               )}
                             </div>
-                          </Col>
-                        </Row>
-                        <div className="textInputGroup">
-                          <div className="imagePreview">
-                            {imagePreview ? (
-                              <img src={imagePreview} alt={imagePreview.name} />
-                            ) : (
-                              ""
-                            )}
                           </div>
-                        </div>
-                      </Col>
-                    </Row>
-                    <div className="group">
-                      <input
-                        type="submit"
-                        value="Submit Post"
-                        className="create__post-submitBlogBtn"
-                      />
+                        </Col>
+                      </Row>
+                      <div className="group">
+                        <input
+                          type="submit"
+                          value="Submit Post"
+                          className="create__post-submitBlogBtn"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+                </form>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      ) : (
+        <PostEditPageProgress />
+      )}
     </>
   );
 };
