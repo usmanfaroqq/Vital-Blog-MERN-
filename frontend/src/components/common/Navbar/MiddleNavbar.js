@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import { FaFacebookF,FaTwitter,FaYoutube } from "react-icons/fa";
 import { ImSearch } from "react-icons/im";
@@ -30,22 +29,22 @@ const MiddleNavbar = () => {
             </Col>
             <Col md={4}>
               <div className="header__icons gap-4 ">
-                <Link to="/" style={{color: "black"}}>
+                <a href={`https://www.facebook.com/usmanfaroqq`} style={{color: "black"}}>
                   {" "}
                   <FaFacebookF />
-                </Link>
-                <Link to="/" style={{color: "black"}}>
+                </a>
+                <a href={`https://twitter.com/usmanfaroqq`} style={{color: "black"}}>
                   {" "}
                   <FaTwitter />
-                </Link>
-                <Link to="/" style={{color: "black"}}>
+                </a>
+                <a href={`https://github.com/usmanfaroqq`} style={{color: "black"}}>
                   {" "}
                   <FaYoutube />
-                </Link>
-                <Link to="/" style={{color: "black"}}>
+                </a>
+                <a to="/" style={{color: "black"}}>
                   {" "}
                   <ImSearch />
-                </Link>
+                </a>
               </div>
             </Col>
           </Row>

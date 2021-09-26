@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import HomeLeftSkeleton from "../../skelatons/HomeLeftSkeleton";
 import HomePagination from "../common/Pagination/HomePagination";
+import EmptyShow from "../common/EmptyShow/EmptyShow";
 
 const HomeAllPosts = () => {
   let { page } = useParams();
@@ -69,7 +70,7 @@ const HomeAllPosts = () => {
               </div>
             ))
           ) : (
-            "No post"
+            <EmptyShow/>
           )
         ) : (
           <HomeLeftSkeleton />

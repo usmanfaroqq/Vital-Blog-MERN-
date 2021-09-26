@@ -1,13 +1,16 @@
 import React from "react";
-import ContentLoader from "react-content-loader";
+import Skeleton from "react-loading-skeleton";
 
-const DetailSkeleton = (props) => (
-  <ContentLoader viewBox="0 0 1000 1000" height={1000} width={1000} {...props}>
-    <rect x="3" y="3" rx="10" ry="10" width="300" height="180" />
-    <rect x="6" y="190" rx="0" ry="0" width="292" height="20" />
-    <rect x="4" y="215" rx="0" ry="0" width="239" height="20" />
-    <rect x="4" y="242" rx="0" ry="0" width="274" height="20" />
-  </ContentLoader>
-);
+const DashboardSkeleton = (props) => {
+  return (
+    <>
+        {Array(100)
+          .fill("")
+          ?.map((product, index) => (
+              <Skeleton style={{ borderRadius: "5px" }} height={10}  weight={1000} className="mb-2" {...props.length} />
+          ))}
+    </>
+  );
+};
 
-export default DetailSkeleton;
+export default DashboardSkeleton;

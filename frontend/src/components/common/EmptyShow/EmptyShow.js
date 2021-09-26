@@ -5,7 +5,7 @@ const EmptyShow = () => {
     return (
         <div className="notFound">
         <div className="notFound__container">
-          <h2 className="notFound__container-emptyDataHeader">You haven't written anything yet!</h2>
+          <h2 className="notFound__container-emptyDataHeader">Haven't written anything yet!</h2>
           <img src={noDataImage} alt="noDataImage" />
         </div>
       </div>
