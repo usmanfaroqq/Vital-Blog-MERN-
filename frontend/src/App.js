@@ -18,6 +18,7 @@ import ProfileSetting from "./components/Dashboard/Setting/SettiingsPart/Profile
 import PasswordSetting from "./components/Dashboard/Setting/SettiingsPart/PasswordSetting";
 import HomeLeftSkeleton from "./skelatons/HomeLeftSkeleton";
 import Details from "./components/PostDetails/Details";
+import Footer from "./components/common/Footer/Footer";
 
 
 
@@ -34,7 +35,7 @@ const App = () => {
           <Navbar />
           <Home />
         </Route>
-        <Route path="/post/details/:id" exact component={props => <> <Navbar/> <Details/></> } />
+        <Route path="/post/details/:id" exact component={props => <> <Navbar/> <Details/> <Footer/></> } />
         <RouteLinks path="/register" exact component={props => <> <Navbar/> <Register/></> } />
         <RouteLinks path="/login" exact component={props => <> <Navbar/> <Login/></> } />
         <PrivateRoutes path="/dashboard/:page?" exact  component={ props => <> <UpperNavbar/> <Dashboard/></> }/>
@@ -44,7 +45,7 @@ const App = () => {
         <PrivateRoutes path="/edit/cover-photo/:id" exact  component={props => <> <UpperNavbar/> <EditCoverImage/></> }/>
         <PrivateRoutes path="/me/profile" exact  component={props => <> <UpperNavbar/> <ProfileSetting/></> }/>
         <PrivateRoutes path="/me/password" exact  component={props => <> <UpperNavbar/> <PasswordSetting/></> }/>
-        <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <HomeLeftSkeleton/></> }/>
+        <PrivateRoutes path="/test" exact  component={props => <> <UpperNavbar/> <Footer/></> }/>
         <Route path="*" exact component={NotFound} />
       </Switch>
     </Router>
