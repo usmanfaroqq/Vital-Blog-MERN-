@@ -29,7 +29,7 @@ const Footer = () => {
           </Col>
           <Col md={4}>
             <div  className=" footer-card">
-              <h1>Write a story on Medium</h1>
+              <h1>Write a story on Vital Blog</h1>
               <p>
                 If you have a story to tell, knowledge to share, or a
                 perspective to offer — welcome home. It’s easy and free to post
