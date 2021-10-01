@@ -3,15 +3,29 @@ import { Container, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { LOGOUT } from "../../../redux/types/AuthTypes";
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+ 
 const UpperNavbar = () => {
+
   const { user } = useSelector((state) => state.AuthReducer);
   const dispatch = useDispatch();
   const logout = () => {
     localStorage.removeItem("myToken");
-
     dispatch({ type: LOGOUT });
   };
+  const notRunning = () => {
+    Swal.fire({
+      icon: 'error',
+      title: "Page is under construction, you can't visit now!!",
+      width: 600,
+      padding: '3em',
+      background: '#fff',
+      backdrop: `
+      #d63031
+      `,
+    })
+  }
   const link1 = user ? (
     <Link className="top__banner-text" to="/">
       {" "}
@@ -81,13 +95,13 @@ const UpperNavbar = () => {
       <Container className="d-flex align-items-center justify-content-between ">
         <div className="list-unstyled d-flex align-items-center gap-4 ">
           {link1}
-          <Link className="top__banner-text" to="/">
+          <Link className="top__banner-text" to="/" onClick={notRunning}>
             About Us
           </Link>
-          <Link className="top__banner-text for-hidden" to="/">
+          <Link className="top__banner-text for-hidden" to="/" onClick={notRunning}>
             Events
           </Link>
-          <Link className="top__banner-text for-hidden" to="/">
+          <Link className="top__banner-text for-hidden" to="/" onClick={notRunning}>
             Policy
           </Link>
         </div>

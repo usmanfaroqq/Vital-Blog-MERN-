@@ -72,6 +72,8 @@ const createPost = (req, res) => {
   });
 };
 
+
+
 // fetch post
 const fetchPosts = async (req, res) => {
   const id = req.params.id;
@@ -91,6 +93,9 @@ const fetchPosts = async (req, res) => {
     return res.status(500).json({ errors: error, msg: error.message });
   }
 };
+
+
+
 
 // fetch single post
 const fetchSinglePost = async (req, res) => {
